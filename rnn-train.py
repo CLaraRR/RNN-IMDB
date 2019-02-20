@@ -10,13 +10,15 @@ from keras.layers.recurrent import SimpleRNN
 
 (x_train, y_train),(x_test,y_test) = imdb.load_data('imdb.npz', num_words=2000) # imdb.load_data() download from website and store default in .keras/datasets/imdb.npz
                                                                                 # if already exist, excute imdb.load_data('imdb.npz')
-# print(x_train[0], y_train[0])
+# print(x_train[0])
+# print(type(x_train[0])) # output <class 'list'>
 
 token = Tokenizer(num_words=2000) # a dict instance, the most frequent 2000 words
 token.fit_on_sequences(x_train) # build a dict from x_train
-x_train = sequence.pad_sequences(x_train, maxlen=200, padding='post') # unify x_train sequences into vectors of length 200
+x_train = sequence.pad_sequences(x_train, maxlen=200, padding='post') # unify x_train list sequences into numpy.narrays of length 200
 x_test = sequence.pad_sequences(x_test, maxlen=200, padding='post') 
 # print(x_train[0])
+# print(type(x_train[0])) # output <class 'numpy.ndarray'>
 # print(x_test[0])
 
 
